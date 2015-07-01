@@ -118,15 +118,16 @@ function fau_setup() {
 	//
 	// Wird bei Default-Galerien verwendet als ANzeige des großen Bildes.
 	add_image_size( 'gallery-thumb', $options['default_gallery_thumb_width'], $options['default_gallery_thumb_height'], $options['default_gallery_thumb_crop']); // 120, 80, true
-	
+
 	/* Grid-Thumbs for gallerys - Name: gallery-grid */
 	add_image_size( 'gallery-grid', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']); // 145, 120, false
 	
 	/* 2 column Imagelists for gallerys - Name: image-2-col */
-	add_image_size( 'image-2-col', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']); // 300, 200, true
+	add_image_size( 'image-2-col', $options['default_gallery_grid2col_width'], $options['default_gallery_grid2col_height'], $options['default_gallery_grid2col_crop']); // 300, 200, true
 	
 	/* 4 column Imagelists for gallerys - Name: image-4-col */
-	add_image_size( 'image-4-col', $options['default_gallery_grid_width'], $options['default_gallery_grid_height'], $options['default_gallery_grid_crop']);	// 140, 70, true
+	add_image_size( 'image-4-col', $options['default_gallery_grid4col_width'], $options['default_gallery_grid4col_height'], $options['default_gallery_grid4col_crop']);	// 140, 70, true
+
 
 	
 	
