@@ -160,7 +160,7 @@
 .no-js #nav li.level1:focus a, 
 #nav li.focus a {
 	background-color: $colorPrimary;
-	color: $colorLightest;
+	color: $colorMainMenu;
 }
 
 .no-js #nav li.level1 a:hover, 
@@ -438,7 +438,7 @@ body.admin-bar.nav-fixed {
 		bottom: 23px;
 		right: 100px;
 		text-align: right;
-		color: lighten($colorPrimary, 15%);
+		color: $colorPrimaryHero; 
 		font-size: 60px;
 		line-height: 50px;
 	}

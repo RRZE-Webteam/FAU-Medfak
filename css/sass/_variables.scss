@@ -15,16 +15,23 @@ $colorTextLight:	#888;
 $colorNotice: 		#a71c18;
 
 // Define colors of each faculty
-$colorPhilFak:	    #ad841f;
-$colorRwFak:	    #801429;
+$colorPhilFak:	    #A36B0D;
+$colorRwFak:	    #8d1429;
 $colorMedFak:	    #00b1c6;
-$colorNatFak:	    #009775;
-$colorTechFak:	    #a3acb2;
+$colorNatFak:	    #048767;
+$colorTechFak:	    #6E7881;
 $colorTechFakDark:  #6a7881;
 $colorZUV:	    #003366;
 $colorDefault:	    #003366;
 
-$colorStandardHellgrau:	    #e9edf2;
+$colorStandardHellgrau:	    #e9edf2;  
+    // FAU: colorlightest:
+    // desaturate(lighten($colorZUV, 73%), 75%);
+$colorContentBorders:	    #dfe6ec;  
+    // FAU: colorlight
+    // desaturate(lighten($colorZUV, 69%), 75%);
+$colorContentRegions:	    #f5f7f9;
+    // FAU: lighten($colorZUV, 4%);
 
 // Define primary colors by faculty
 $colorPrimary: $colorMedFak;	// darken($colorPhilFak, 10%);
@@ -37,12 +44,12 @@ $colorPrimaryContrast: #fff;
 
 // Helper for colors: 
 // Philfak: http://paletton.com/#uid=1140u0kqhlIhItGmqp-unhvDIc9  
-// Medfak: http://paletton.com/#uid=13l0u0kiCFn8GVde7NVmtwSqXtg
+// Medfak: http://paletton.com/#uid=13o0u0kJ4x7oeIcvpI2KBpTNik2
 
-$PalettonHellste:	#aee5ed;
-$PalettonHeller:	#7acbd7;
-$PalettonDunkler:	#31919f;
-$PalettonDunkelste:	#19808f;
+$PalettonHellste:	#35a6c6;
+$PalettonHeller:	#0a9dc6;
+$PalettonDunkler:	#026580;
+$PalettonDunkelste:	#014e63;
 
 
 $colorHover:		    $PalettonDunkelste;
@@ -71,8 +78,8 @@ $colorButtonBackgroundHover:	darken($colorButtonBackground, 3%);
 
 $colorSearchPlaceholder:        #111;
 $colorSearchInput:		#000;
-$colorSearchInputBackground:	$colorLightest; // #5586b6;
-$colorSearchInputBackgroundFocus:  #fff; // #5e91c3;
+$colorSearchInputBackground:	$colorLightest;
+$colorSearchInputBackgroundFocus:  #fff;
 
 // Meta Menu
 $colorMeta:			$colorDefault;
