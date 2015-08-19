@@ -1,6 +1,6 @@
 
 // Konstante fuer das Design
- $farbfamilie: 'nat';
+ $farbfamilie: 'med';
  
 // Define breakpoints
 $breakSM: 480px;
@@ -38,60 +38,63 @@ $colorContentRegions:	    #f5f7f9;
     // FAU: lighten($colorZUV, 4%);
 
 // Define defaults and variables
-    $colorPrimary: $colorZUV;	// darken($colorPhilFak, 10%);
-    $colorPrimaryContrast: #fff;
-    $PalettonHellste:	#e9edf2;
-    $PalettonHeller:	#dfe6ec;
-    $PalettonDunkler:	#24598f;
-    $PalettonDunkelste:	#1f4c7a;
-    $siegelurl: '../img/siegel-zuv.png';  
+$colorPrimary: $colorZUV;	
+$colorPrimaryContrast: #fff;
+$PalettonHellste:	desaturate(lighten($colorPrimary, 73%), 75%);
+$PalettonHeller:	desaturate(lighten($colorPrimary, 69%), 75%);
+$PalettonDunkler:	desaturate(lighten($colorPrimary, 10%), 90%);
+$PalettonDunkelste:	desaturate(lighten($colorPrimary, 10%), 40%);
+$siegelurl: '../img/siegel-zuv.png';  
  
+$colorPrimaryHero:	    $colorPrimary;
+    
  @if $farbfamilie == 'med' {
     $colorPrimary: $colorMedFak;
-    $PalettonHellste:	#35C0DA;
-    $PalettonHeller:	#08C0E7;
+    $PalettonHellste:	#eaf3fc; // #35C0DA;
+    $PalettonHeller:	#bfd6f5; // #08C0E7;
     $PalettonDunkler:	#026480;
     $PalettonDunkelste:	#014e63;
     $siegelurl: '../img/siegel-medfak.png';
 
  } @else if $farbfamilie == 'phil' {
     $colorPrimary: $colorPhilFak;
-    $PalettonHellste:	#dea74b;
-    $PalettonHeller:	#cfab6e;
+    $PalettonHellste:	#f3eedf;
+    $PalettonHeller:	#d9c689;
     $PalettonDunkler:	#805000;
     $PalettonDunkelste:	#553500;
     $siegelurl: '../img/siegel-philfak.png';   
  }  @else if $farbfamilie == 'nat' {
     $colorPrimary: $colorNatFak;
-    $PalettonHellste:	#39c5a5;
-    $PalettonHeller:	#19c79e;
+    $PalettonHellste:	#e5efea;
+    $PalettonHeller:	#aacfbd;
     $PalettonDunkler:	#006e53;
     $PalettonDunkelste:	#00533f;
     $siegelurl: '../img/siegel-natfak.png';     
  }  @else if $farbfamilie == 'rw' {
     $colorPrimary: $colorRwFak;    
-    $PalettonHellste:	#c9a8af;
-    $PalettonHeller:	#bd7d8b;
+    $PalettonHellste:	#ede7de; // #C9A8AF;
+    $PalettonHeller:	#c5ac94; // #bd7d8b;
     $PalettonDunkler:	#690013;
     $PalettonDunkelste:	#42000c;
-    $siegelurl: '../img/siegel-rwfak.png';     
+    $siegelurl: '../img/siegel-rwfak.png';   
+
  }  @else if $farbfamilie == 'tech' {
     $colorPrimary: $colorTechFak;    
-    $PalettonHellste:	#bfc2c5;
-    $PalettonHeller:	#8e949a;
+    $PalettonHellste:	#ebecee; // #bfc2c5;
+    $PalettonHeller:	#d2d5d7; // #8e949a;
     $PalettonDunkler:	#53606b;
     $PalettonDunkelste:	#3b4956;
-    $siegelurl: '../img/siegel-techfak.png';     
- } @else {
+    $siegelurl: '../img/siegel-techfak.png';   
+ } @else if $farbfamilie == 'zuv' {
     $colorPrimary: $colorZUV;
-    $PalettonHellste:	#e9edf2;
-    $PalettonHeller:	#dfe6ec;
+    $PalettonHellste:	#dde5f0;
+    $PalettonHeller:	#8fb1ef;
     $PalettonDunkler:	#24598f;
     $PalettonDunkelste:	#1f4c7a;
     $siegelurl: '../img/siegel-zuv.png';     
  }
     
-    
+     
 
 // $colorHover: 	desaturate(lighten($colorPrimary, 10%), 40%);
 // $colorLight:	desaturate(lighten($colorPrimary, 69%), 75%);
@@ -105,8 +108,7 @@ $colorLightContrast:	    #fff;
 $colorLightest:		    $PalettonHellste;
 $colorLightestContrast:	    $PalettonDunkelste;
 $colorPrimaryHero:	    $colorPrimary;
-
-
+$colorPrimaryHeroLight:	    lighten($colorPrimary, 15%); 
 
 
 $colorSubNavCurrent:		#fff;
@@ -115,13 +117,13 @@ $colorSubNavCurrentHover:	#fff;
 $colorSubNavCurrentHoverBackground: $colorHover;
 $colorSubNav:			$PalettonDunkelste;
 $colorSubNavBackground:		$colorLightest;
-$colorSubNavBackgroundHover:	darken($colorSubNavBackground, 3%);
+$colorSubNavBackgroundHover:	$PalettonDunkler; // darken($colorSubNavBackground, 5%);
 $colorMainMenu:			#fff;
 
 
 $colorButton:			$PalettonDunkelste;
 $colorButtonBackground:		$colorLightest;
-$colorButtonBackgroundHover:	darken($colorButtonBackground, 3%);
+$colorButtonBackgroundHover:	darken($colorButtonBackground, 5%);
 
 $colorSearchPlaceholder:        #111;
 $colorSearchInput:		#000;
