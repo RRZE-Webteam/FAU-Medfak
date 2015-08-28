@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Portalseite
+ * Template Name: Portalseite 
  *
  * @package WordPress
  * @subpackage FAU
