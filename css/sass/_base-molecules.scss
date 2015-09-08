@@ -235,6 +235,7 @@
 }
 
 /* Breadcrumb */
+
 .breadcrumbs {
 	color: #fff;
 	padding: 10px 0;
@@ -397,6 +398,10 @@
 			}
 			&.natfak a {
 			    background-color:  $colorNatFak;
+			    color: #fff;
+			}
+			&.philfak a {
+			    background-color:  $colorPhilFak;
 			    color: #fff;
 			}
 			&.fau a, &.default a {
