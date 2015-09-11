@@ -62,8 +62,8 @@ function fau_setup() {
 	register_nav_menu( 'main-menu', __( 'Haupt-Navigation', 'fau' ) );
 	
 
-	register_nav_menu( 'quicklinks-3', __( 'Startseite: Bühne Spalte 1', 'fau' ) );
-	register_nav_menu( 'quicklinks-4', __( 'Startseite: Bühne Spalte 2', 'fau' ) );
+	register_nav_menu( 'quicklinks-3', __( 'Startseite Fakultät: Bühne Spalte 1', 'fau' ) );
+	register_nav_menu( 'quicklinks-4', __( 'Startseite Fakultät: Bühne Spalte 2', 'fau' ) );
 	
 	register_nav_menu( 'error-1', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 1', 'fau' ) );
 	register_nav_menu( 'error-2', __( 'Fehler- und Suchseite: Vorschlagmenu Spalte 2', 'fau' ) );
@@ -80,7 +80,10 @@ function fau_setup() {
 	/* Image Sizes for Slider, Name: hero */
 	add_image_size( 'hero', $options['slider-image-width'], $options['slider-image-height'], $options['slider-image-crop']);	// 1260:350
 	
+	/* Banner fuer Startseiten */
+	add_image_size( 'herobanner', $options['default_startseite-bannerbild-image_width'], $options['default_startseite-bannerbild-image_height'], $options['default_startseite-bannerbild-image_crop']);	// 1260:182
     
+	
 	/* Thumb for Main menu - Name: portalmenu-thumb */
 	add_image_size( 'portalmenu-thumb', $options['default_mainmenuthumb_width'], $options['default_mainmenuthumb_height'], $options['default_mainmenuthumb_crop']);	// 370, 185, false
  
@@ -254,7 +257,7 @@ function fau_addmetatags() {
 
     $output = "";
     $output .= '<meta http-equiv="Content-Type" content="text/html; charset='.get_bloginfo('charset').'" />'."\n";
-    $output .= '<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=9"> <![endif]-->'."\n";
+  //  $output .= '<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=9"> <![endif]-->'."\n";
     $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">'."\n";    
     
     // $output .= '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">'."\n";    
@@ -805,7 +808,7 @@ function fau_make_link_relative($url) {
     return $url; 
 }
 
-function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '', $addfauhome = false) {
+function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '') {
     global $default_link_liste;
     global $options;
     
@@ -821,13 +824,7 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '', $ad
 	$result .= "\n";
     }
     $thislist = '';
-    if (($addfauhome==true) && isset($options['fauhome_url']) && isset($options['fauhome_linktext'])) {
-	$thislist .= '<li class="fauhome">';
-	$thislist .= '<a href="'.$options['fauhome_url'].'" title="'.$options['fauhome_title'].'">';
-	$thislist .= $options['fauhome_linktext'];
-	$thislist .= '</a>';
-	$thislist .= '</li>'."\n";	
-    }
+    
     foreach($uselist as $key => $entry ) {
 	if (substr($key,0,4) != 'link') {
 	    continue;
@@ -861,6 +858,108 @@ function fau_get_defaultlinks ($list = 'faculty', $ulclass = '', $ulid = '', $ad
     }
     return $result;
 }
+
+function fau_get_toplinks() {
+    global $options;
+    global $default_link_liste;
+    
+    $uselist =  $default_link_liste['meta'];
+    $result = '';
+    
+
+    if (isset($uselist['_title'])) {
+	$result .= '<h3>'.$uselist['_title'].'</h3>';	
+	$result .= "\n";
+    }
+    
+	// website_type: 0 = Fakultaetsportal; 1 = Lehrstuehle, Einrichtungen, etc unter Fakultaet; 2 = Sonstige
+	    
+    if ($options['website_type']==0) {
+	$options['default_display_fauhomelink'] = true;
+	$options['default_display_facultyhomelink'] = false;
+	$options['fauhome_useimg'] = false;
+    } elseif ($options['website_type']==1) {
+	$options['default_display_fauhomelink'] = true;
+	$options['default_display_facultyhomelink'] = true;	
+	$options['fauhome_useimg'] = true;
+    } else {
+	$options['default_display_fauhomelink'] = true;
+	$options['default_display_facultyhomelink'] = false;
+	$options['fauhome_useimg'] = true;
+    }
+    
+    
+    $thislist = '';
+    if (($options['default_display_fauhomelink']==true) && isset($options['fauhome_url'])) {
+	$thislist .= '<li class="fauhome">';
+	$thislist .= '<a href="'.$options['fauhome_url'].'">';
+	    			
+	if ($options['fauhome_useimg']) {
+	    $thislist .= '<img src="'.$options['fauhome_imgsrc'].'" alt="'.$options['fauhome_title'].'">'; 
+	} else {
+	    $thislist .= $options['fauhome_linktext']; 
+	}	
+	$thislist .= '</a>';
+	$thislist .= '</li>'."\n";	
+    }
+    if (($options['default_display_facultyhomelink']==true) && isset($options['facultyhome_url'])) {
+	$thislist .= '<li class="facultyhome">';
+	$thislist .= '<a href="'.$options['facultyhome_url'].'">';
+	$thislist .= $options['facultyhome_title']; 
+	$thislist .= '</a>';
+	$thislist .= '</li>'."\n";	
+    }
+
+    
+    
+    if ( has_nav_menu( 'meta' ) ) {
+	// wp_nav_menu( array( 'theme_location' => 'meta', 'container' => false, 'items_wrap' => '<ul id="meta-nav" class="%2$s">%3$s</ul>' ) );
+	
+	 $menu_name = 'meta';
+
+	    if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
+		$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+		$menu_items = wp_get_nav_menu_items($menu->term_id);
+		foreach ( (array) $menu_items as $key => $menu_item ) {
+		    $title = $menu_item->title;
+		    $url = $menu_item->url;
+		    $thislist .= '<li><a href="' . $url . '">' . $title . '</a></li>';
+		}
+	    } 
+	
+    } else {
+	foreach($uselist as $key => $entry ) {
+	   if (substr($key,0,4) != 'link') {
+	       continue;
+	   }
+	   $thislist .= '<li';
+	   if (isset($entry['class'])) {
+	       $thislist .= ' class="'.$entry['class'].'"';
+	   }
+	   $thislist .= '>';
+	   if (isset($entry['content'])) {
+	       $thislist .= '<a href="'.$entry['content'].'">';
+	   }
+	   $thislist .= $entry['name'];
+	   if (isset($entry['content'])) {
+	       $thislist .= '</a>';
+	   }
+	   $thislist .= "</li>\n";
+       }   
+    }
+    if (isset($thislist)) {	
+	$result .= '<ul id="meta-nav">';
+	$result .= $thislist;
+	$result .= '</ul>';	
+	$result .= "\n";	
+    }
+    return $result;
+	     
+    
+  
+}
+
+
 
 function fau_main_menu_fallback() {
     global $options;
@@ -1213,8 +1312,12 @@ function fau_breadcrumb($lasttitle = '') {
   $pretitletextstart   = '<span>';
   $pretitletextend     = '</span>';
   
+  if ($options['breadcrumb_withtitle']) {
+	echo '<h3 class="breadcrumb_sitetitle" role="presentation">'.get_bloginfo( 'title' ).'</h3>';
+	echo "\n";
+    }
   echo '<nav aria-labelledby="bc-title" class="breadcrumbs">'; 
-  echo '<h3 class="screen-reader-text" id="bc-title">'.__('Sie befinden sich hier:','fau').'</h3>';
+  echo '<h4 class="screen-reader-text" id="bc-title">'.__('Sie befinden sich hier:','fau').'</h4>';
   if ( !is_home() && !is_front_page() || is_paged() ) { 
     
     global $post;
@@ -1305,6 +1408,9 @@ function fau_breadcrumb($lasttitle = '') {
 	echo $before . get_the_title(get_option('page_for_posts')) . $after;
   }
    echo '</nav>'; 
+   
+  
+   
 }
 
 
@@ -1466,3 +1572,54 @@ if ($options['advanced_reveal_pages_id']) {
     add_filter( 'manage_pages_columns', 'revealid_add_id_column', 5 );
     add_action( 'manage_pages_custom_column', 'revealid_id_column_content', 5, 2 );
 }
+
+
+if ( ! function_exists( 'fau_get_image_attributs' ) ) :
+    function fau_get_image_attributs($id=0) {
+        $precopyright = __('Bild:','fau').' ';
+        if ($id==0) return;
+        
+        $meta = get_post_meta( $id );
+        if (!isset($meta)) {
+         return;
+        }
+        $result = array();
+	if (isset($meta['_wp_attachment_image_alt'][0])) {
+	    $result['alt'] = trim(strip_tags($meta['_wp_attachment_image_alt'][0]));
+	} else {
+	    $result['alt'] = "";
+	}       
+        if (isset($meta['_wp_attachment_metadata']) && is_array($meta['_wp_attachment_metadata'])) {        
+         $data = unserialize($meta['_wp_attachment_metadata'][0]);
+         if (isset($data['image_meta']) && is_array($data['image_meta']) && isset($data['image_meta']['copyright'])) {
+                $result['copyright'] = trim(strip_tags($data['image_meta']['copyright']));
+         }
+	 if (isset($data['image_meta']) && is_array($data['image_meta']) && isset($data['image_meta']['credit'])) {
+		$displayinfo = trim(strip_tags($data['image_meta']['credits']));
+	 }
+        }
+        $attachment = get_post($id);
+        $result['bildunterschrift'] = $result['beschreibung'] = $result['title'] = '';
+        if (isset($attachment) ) {
+	    if (isset($attachment->post_excerpt)) {
+		$result['bildunterschrift'] = trim(strip_tags( $attachment->post_excerpt ));
+	    }
+	    if (isset($attachment->post_content)) {
+		$result['beschreibung'] = trim(strip_tags( $attachment->post_content ));
+	    }        
+	    if (isset($attachment->post_title)) {
+		 $result['title'] = trim(strip_tags( $attachment->post_title )); 
+	    }   
+        }
+        
+	
+	
+        if ((empty($displayinfo)) && (!empty($result['copyright']))) $displayinfo = $precopyright.' '.$result['copyright'];	
+	if (empty($displayinfo)) $displayinfo = $result['beschreibung'];
+	if (empty($displayinfo)) $displayinfo = $result['bildunterschrift'];
+        if (empty($displayinfo)) $displayinfo = $result['alt'];
+        $result['credits'] = $displayinfo;
+        return $result;
+                
+    }
+endif;

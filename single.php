@@ -15,12 +15,12 @@ get_header(); ?>
 
 	<?php get_template_part('hero', 'small'); ?>
 
-	<section id="content">
+	<div id="content">
 		<div class="container">
 
 			<div class="row">
 				<div class="span8">
-					
+				    <main>
 					<article class="news-details">
 						<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
 							<div class="post-image">
@@ -40,10 +40,18 @@ get_header(); ?>
 									
 								    if (isset($bildunterschrift) && strlen($bildunterschrift)>1) {
 									echo '<div class="post-image-caption">'.$bildunterschrift.'</div>';
-								    } elseif(get_post(get_post_thumbnail_id()) && get_post(get_post_thumbnail_id())->post_excerpt != '') { 
-									echo '<div class="post-image-caption">'.get_post(get_post_thumbnail_id())->post_excerpt.'</div>';
-								    } 
+								    } else {
+									$imgdata = fau_get_image_attributs($post_thumbnail_id);
+									$info = trim(strip_tags( $imgdata['beschreibung'] ));		
+									if (isset($info) && (!empty($info))) {
+									    echo '<div class="post-image-caption">'. $imgdata['beschreibung'].'</div>';
+									} elseif (isset($imgdata['credits']) && (!empty($imgdata['credits']))  ) {
+									    echo '<div class="post-image-caption">'. $imgdata['credits'].'</div>';
+									}
 									
+
+								    } 
+								    
 								}
 
 								?>
@@ -88,6 +96,7 @@ get_header(); ?>
 					    
 						
 					</article>
+				    </main>
 				    <?php if ($options['advanced_activate_post_comments']) { ?>
 					 <div class="post-comments" id="comments"> 
 					    <?php 
@@ -101,8 +110,8 @@ get_header(); ?>
 			</div>
 
 		</div>
-	    		<?php get_template_part('footer', 'social'); ?>	
-	</section>
+	    	<?php get_template_part('footer', 'social'); ?>	
+	</div>
 	
 <?php endwhile; ?>
 
