@@ -1,5 +1,5 @@
 FAU-Medfak
-Wordpress-Theme für die Medizinische Fakultät
+Wordpress-Theme für die Medizinische Fakultät der
 Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 ====================================================
  
