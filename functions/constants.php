@@ -17,7 +17,7 @@ $defaultoptions = array(
     'js-version'			=> '1.10',
 	// Theme-Versionslinie, wird überschrieben durch Style.css Version
     
-    'website_type'			=> 0,
+    'website_type'			=> 1,
 	// website_type: 
 	//  0 = Fakultaetsportal; 
 	//  1 = Lehrstuehle, Departents 
