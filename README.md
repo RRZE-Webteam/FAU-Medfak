@@ -1,4 +1,4 @@
-# FAU-Einrichtungen
+# FAU-Medfak
 
 Wordpress-Theme für die medizinische Fakultät der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
