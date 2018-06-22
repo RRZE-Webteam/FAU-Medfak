@@ -1,6 +1,6 @@
 # FAU-Einrichtungen
 
-Wordpress-Theme für medizinische Fakultät der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
+Wordpress-Theme für die medizinische Fakultät der Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU)
 
 Eine Dokumentation kann unter https://wordpress.rrze.fau.de  gefunden werden.
 
