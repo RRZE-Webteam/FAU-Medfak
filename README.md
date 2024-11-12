@@ -23,7 +23,7 @@ GNU General Public License (GPL) Version 3
 ## Dokumentation
 
 Eine Dokumentation des Themes und dessen Funktionen findet sich unter der Adresse
-https://wordpress.rrze.fau.de  
+https://wp.rrze.fau.de  
 
 ## Feedback
 
